@@ -1,0 +1,38 @@
+.addcarrier{
+    
+    margin-top: 50px;
+    margin-left: 25%;
+    
+
+}.addcarrier label{
+    margin-top: 20px;
+}.btncontrol{
+    margin-top: 20px;
+    margin-left: 280px;
+    
+    
+    
+}.form-select{
+    height: 50px;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 3px solid gray;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+    width: 500px;
+    display: block;
+    margin-left: 700px;
+}.dataCarrier{
+    margin-top: 60px;
+}.app-Header{
+    font-size: 36px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    text-shadow: 2px 1px gray;
+}.btnadd{
+    margin-left: 700px;
+}.btnshow{
+    margin-left: 700px;
+}

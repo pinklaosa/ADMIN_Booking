@@ -1,0 +1,21 @@
+.form-selectt{
+    margin-top: 5px;
+    height: 40px;
+    border: 2px solid gray;
+    border-radius: 10px;
+}.tableOrder{
+    border: 3px solid gray;
+    padding: 50px;
+    margin-top: 50px;
+    border-radius: 20px;
+    width: 1600px;
+    margin-left: 200px;
+}.headOrder{
+    margin-top: 50px;
+    text-align: center;
+    text-shadow: 2px 2px gray;
+}.btnsave{
+    margin-left:850px;
+    margin-top: 20px;
+    
+}
