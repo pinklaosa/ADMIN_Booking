@@ -1,15 +1,31 @@
-import React from "react";
-import { NavLink } from 'react-router-dom';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
-import './ShowCarrier.css';
-function ShowCarrier() {
+import "./ShowCarrier.css";
+const ShowCarrier = () => {
+  const [serviceData, setServiceData] = useState([]);
+
+  const reformatDate = (datetime) =>
+    datetime.getFullYear() +
+    "-" +
+    (datetime.getMonth() + 1) +
+    "-" +
+    datetime.getDate();
+    
+  useEffect(() => {
+    axios.get("http://localhost:3001/adminservice").then((response) => {
+      if (response.data.status === 200) {
+        setServiceData(response.data.result);
+      }
+    });
+  }, []);
   return (
-    <div className="container">
-
+    <div className="" style={{ padding: "20px 150px" }}>
       <div className="showHeader">
         <h1>Show Carrier</h1>
       </div>
-      <div>
+      <div className="TableBook">
         <table class="table">
           <thead className="bg-light">
             <tr>
@@ -20,250 +36,97 @@ function ShowCarrier() {
               <th scope="col">PORT OF DESTINATION</th>
               <th scope="col">TRANSIT TIME</th>
               <th scope="col">STATUS</th>
+              <th scope="col">DATE</th>
               <th scope="col">ACTION</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th className="row1">
-                <div className="d-flex align-item-center">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Evergreen_Roundel.svg/1200px-Evergreen_Roundel.svg.png"
-                    alt=""
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: 50 / 2,
-                    }}
-                  ></img>
-                  <div className="nameSer1">
-                    <p
-                      className="fw-bold mb-1"
-                      style={{ marginLeft: "30px", marginTop: "8px" }}
-                    >
-                      {" "}
-                      EVERGREEN
+            {serviceData.length > 0 ? (
+              serviceData.map((data) => (
+                <tr>
+                  <th className="row1">
+                    <div className="d-flex align-item-center">
+                      <img
+                        src={
+                          "/logo_service/logo_service/" +
+                          data.serviceName +
+                          ".png"
+                        }
+                        alt=""
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: 50 / 2,
+                        }}
+                      ></img>
+                      <div className="nameSer1">
+                        <p
+                          className="fw-bold mb-1"
+                          style={{ marginLeft: "30px", marginTop: "8px" }}
+                        >
+                          {data.serviceName.toUpperCase()}
+                        </p>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
+                      {data.shipId.toUpperCase()}
                     </p>
-                  </div>
-                </div>
-              </th>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  EVG_0001
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  THAILAND
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  BANGKOK PORT
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  LAEM CHABANG PORT
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  7DAYS
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  Available
-                </p>
-              </td>
-              <td>
-                <button type="button" class="btn btn-danger">
-                  Delete
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row2">
-                <div className="d-flex align-item-center">
-                  <img
-                    src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/062012/maersk.jpg?itok=uYKEd5j9"
-                    alt=""
-                    style={{ width: "40px", height: "40px" }}
-                  ></img>
-                  <div className="nameSer2">
-                    <p
-                      className="fw-bold mb-1"
-                      style={{ marginLeft: "40px", marginTop: "8px" }}
-                    >
-                      MAERSK
+                  </td>
+                  <td>
+                    <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
+                      {data.country.toUpperCase()}
                     </p>
-                  </div>
-                </div>
-              </th>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  MAR_0001
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  THAILAND
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  BANGKOK PORT
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  LAEM CHABANG PORT
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  7DAYS
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  Available
-                </p>
-              </td>
-              <td>
-                <button type="button" class="btn btn-danger">
-                  Delete
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th className="row3">
-                <div className="d-flex align-item-center">
-                  <img
-                    src="https://seekvectorlogo.com/wp-content/uploads/2018/05/ocean-network-express-one-vector-logo-small.png"
-                    alt=""
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: 50 / 2,
-                    }}
-                  ></img>
-                  <div className="nameSer1">
-                    <p
-                      className="fw-bold mb-1"
-                      style={{ marginLeft: "50px", marginTop: "8px" }}
-                    >
-                      ONE
+                  </td>
+                  <td>
+                    <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
+                      {data.portShipment.toUpperCase()}
                     </p>
-                  </div>
-                </div>
-              </th>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  ONE_0001
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  THAILAND
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  BANGKOK PORT
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  LAEM CHABANG PORT
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  7DAYS
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  Available
-                </p>
-              </td>
-              <td>
-                <button type="button" class="btn btn-danger">
-                  Delete
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th className="row4">
-                <div className="d-flex align-item-center">
-                  <img
-                    src="https://www.cma-cgm.com/static/TH/pictures/CMA%20CGM%2012.png"
-                    alt=""
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: 50 / 2,
-                    }}
-                  ></img>
-                  <div className="nameSer1">
-                    <p
-                      className="fw-bold mb-1"
-                      style={{ marginLeft: "30px", marginTop: "8px" }}
-                    >
-                      {" "}
-                      CMA-CGM
+                  </td>
+                  <td>
+                    <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
+                      {data.portDestination.toUpperCase()}
                     </p>
-                  </div>
-                </div>
-              </th>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  CMA_0001
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  THAILAND
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  BANGKOK PORT
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  LAEM CHABANG PORT
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  7DAYS
-                </p>
-              </td>
-              <td>
-                <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
-                  Available
-                </p>
-              </td>
-              <td>
-                <button type="button" class="btn btn-danger">
-                  Delete
-                </button>
-              </td>
-            </tr>
+                  </td>
+                  <td>
+                    <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
+                      {data.transactionTime.toUpperCase()}
+                    </p>
+                  </td>
+                  <td>
+                    <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
+                      {data.status.toUpperCase()}
+                    </p>
+                  </td>
+                  <td>
+                    <p className="fw-bold mb-1" style={{ marginTop: "8px" }}>
+                      {reformatDate(new Date(data.date))}
+                    </p>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-success">
+                      EDIT
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <div></div>
+            )}
           </tbody>
         </table>
       </div>
 
-      <hr/>
-      <NavLink  to="carrier" exact>                
-      <button className="btn btn-success">Add Carrier</button>
-      </NavLink>  
+      <hr />
+      <NavLink to="carrier" exact>
+        <button className="btn btn-success">Add Carrier</button>
+      </NavLink>
     </div>
   );
-}
+};
 
 export default ShowCarrier;
