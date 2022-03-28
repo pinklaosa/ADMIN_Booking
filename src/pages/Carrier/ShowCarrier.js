@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import "./ShowCarrier.css";
 const ShowCarrier = () => {
   const [serviceData, setServiceData] = useState([]);
+
 
   const reformatDate = (datetime) =>
     datetime.getFullYear() +
@@ -12,7 +13,7 @@ const ShowCarrier = () => {
     (datetime.getMonth() + 1) +
     "-" +
     datetime.getDate();
-    
+
   useEffect(() => {
     axios.get("http://localhost:3001/adminservice").then((response) => {
       if (response.data.status === 200) {
@@ -20,10 +21,11 @@ const ShowCarrier = () => {
       }
     });
   }, []);
-  return (
+return (
     <div className="" style={{ padding: "20px 150px" }}>
       <div className="showHeader">
         <h1>Show Carrier</h1>
+
       </div>
       <div className="TableBook">
         <table class="table">
@@ -105,10 +107,26 @@ const ShowCarrier = () => {
                     </p>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-success">
-                      EDIT
-                    </button>
-                    <button type="button" class="btn btn-danger">
+                    <Link to={`/showcarrier/${data.id}`}>
+                      <button type="button" class="btn btn-success">
+                        EDIT
+                      </button>
+                    </Link>
+
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      onClick={() => {
+                        axios
+                          .get("http://localhost:3001/delservice/" + data.id)
+                          .then((response) => {
+                            if (response.data.status === 200) {
+                              alert(response.data.msg);
+                              window.location = "/showcarrier";
+                            }
+                          });
+                      }}
+                    >
                       Delete
                     </button>
                   </td>
