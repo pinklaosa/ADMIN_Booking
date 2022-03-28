@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Popup from "reactjs-popup";
 import "./Order.css";
+import { Link } from "react-router-dom";
 const Order = () => {
   const [history, setHistory] = useState([]);
   const [status, setStatus] = useState([]);
@@ -97,6 +98,15 @@ const Order = () => {
                       >
                         View
                       </a>
+                      <Link to={`/order/${h.bookingId}`}>
+                        <button
+                        class="btn btn-success"
+                        style={{ width: "80px" ,marginLeft: "10px"}}
+                      >
+                        Edit
+                      </button>
+                      </Link>
+                      
                     </p>
                     <div class="row">
                       <div class="col" style={{ width: "250px" }}>
@@ -167,6 +177,7 @@ const Order = () => {
                       >
                         <option value="">Change Status</option>
                         <option>Pending</option>
+                        <option>Waiting Payment</option>
                         <option>Complete</option>
                         <option>Canceled</option>
                       </select>

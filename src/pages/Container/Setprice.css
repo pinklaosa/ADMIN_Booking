@@ -1,0 +1,28 @@
+.setprice{
+    margin-left: 700px;
+    margin-top: 50px;
+    
+
+}.headsetp{
+    font-size: 20px;
+    margin-top: 20px;
+    
+}.btnsetprice{
+    margin-left: 150px;
+    margin-top: 30px;
+}.setctn20{
+    display: flex;
+    flex-direction: row;
+}.setctn20 i{
+color: rgb(70, 70, 70);
+}.setctn40{
+    display: flex;
+    flex-direction: row;
+}.setctn40 i {
+    color: rgb(70, 70, 70);
+}.setctn45{
+    display: flex;
+    flex-direction: row;
+}.setctn45 i {
+    color: rgb(70, 70, 70);
+}

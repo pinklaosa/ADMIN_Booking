@@ -57,7 +57,7 @@ const EditeCarrier = () => {
             />
 
             <select class="form-select" value={country}>
-              <option>Thailand</option>
+              <option value={"thailand"}>Thailand</option>
             </select>
 
             <select

@@ -14,35 +14,57 @@ import Order from "./pages/Order/Order";
 import User from "./pages/User/User";
 import ShowCarrier from "./pages/Carrier/ShowCarrier";
 import EditeCarrier from "./pages/Carrier/EditeCarrier";
+import Login from "./pages/Login/Login";
+import EditOrder from "./pages/Order/EditOrder";
+import Setprice from "./pages/Container/Setprice";
 
 const App = () => {
   return (
     <Router>
-      <Navbar />
       <main>
         <Switch>
-          <Route path="/" exact>
+          <Route path="/home" exact>
+            <Navbar />
             <Home />
           </Route>
           <Route path="/order" exact>
+            <Navbar />
             <Order />
           </Route>
           <Route path="/carrier" exact>
+            <Navbar />
             <Carrier />
           </Route>
           <Route path="/showcarrier" exact>
+            <Navbar />
             <ShowCarrier />
           </Route>
           <Route path="/user" exact>
+            <Navbar />
             <User />
           </Route>
           <Route path="/contact" exact>
+            <Navbar />
             <Contact />
           </Route>
           <Route path="/showcarrier/:id">
+            <Navbar />
             <EditeCarrier></EditeCarrier>
           </Route>
-          <Redirect to="/" />
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+          <Route path="/order/:id">
+            <EditOrder></EditOrder>
+          </Route>
+          <Route path={"/container"}>
+          <Navbar />
+            <Setprice></Setprice>
+          </Route>
+          <Route path="/">
+            <Redirect to="/login" />
+          </Route>
+          
         </Switch>
       </main>
     </Router>
