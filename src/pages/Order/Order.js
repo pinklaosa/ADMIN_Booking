@@ -38,6 +38,23 @@ const Order = () => {
       });
   };
 
+  const chageColor = (status) => {
+    switch (status) {
+      case "paid":
+        return "blue";
+      case "waiting payment":
+        return "yellow";
+      case "complete":
+        return "green";
+      case "canceled":
+        return "red";
+        case "pending":
+          return "orange";
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="container1">
       <div className="headOrder">
@@ -62,7 +79,9 @@ const Order = () => {
           </thead>
           <tbody>
             {history.length > 0 ? (
-              history.map((h, i) => (
+              history.map((h, i) => {
+                let colorStatus = chageColor(h.bookingStatus);
+                return(
                 <tr>
                   <th>
                     <p style={{ marginTop: "10px" }}>{h.bookingId}</p>
@@ -76,7 +95,7 @@ const Order = () => {
                     <p style={{ marginTop: "10px" }}>{h.time}</p>
                   </td>
                   <td>
-                    <p style={{ marginTop: "10px", color: "orange" }}>
+                    <p style={{ marginTop: "10px", color: colorStatus }}>
                       {h.bookingStatus.toUpperCase()}
                     </p>
                   </td>
@@ -184,7 +203,7 @@ const Order = () => {
                     </div>
                   </td>
                 </tr>
-              ))
+              )})
             ) : (
               <div></div>
             )}

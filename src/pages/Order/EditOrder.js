@@ -33,10 +33,12 @@ const EditOrder = () => {
     axios.get("http://localhost:3001/container").then((response) => {
       if (response.data.status === 200) {
         setContainer(response.data.result);
+        console.log(response.data.result);
       }
     });
   }, []);
 
+  
   return (
     <div className="select">
       <header className="app-Header">EDITE ORDER</header>
